@@ -44,10 +44,6 @@ public class ApiData extends AsyncTask<Void, Void, String> {
         return siteData;
     }
 
-    public String getImage(String icon)
-    {
-        return null;
-    }
 
     @Override
     protected String doInBackground(Void... voids) {

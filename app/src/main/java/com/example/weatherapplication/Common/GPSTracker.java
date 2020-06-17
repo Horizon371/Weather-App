@@ -8,14 +8,16 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.widget.Toast;
-
 import androidx.core.content.ContextCompat;
+
 
 public class GPSTracker implements LocationListener {
 
     private Context context;
-    public GPSTracker(Context context) {
+    private LocationListener locationListener;
+    public GPSTracker(Context context, LocationListener locationListener) {
         this.context = context;
+        this.locationListener = locationListener;
     }
 
     public Location getLocation()
@@ -29,7 +31,7 @@ public class GPSTracker implements LocationListener {
         if(isGPSEnabled)
         {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 10,this);
-            return  locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1, 2, this.locationListener);
         }
         else
         {
